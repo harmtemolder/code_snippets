@@ -18,7 +18,7 @@ BEGIN
 
   EXECUTE IMMEDIATE (
     "SELECT STRING_AGG(' "||aggregation
-    ||"""(IF('||@pivot_col_name||'="'||x.value||'", '||@pivot_col_value||', null)) e_'||fhoffa.x.normalize_col_name(x.value))
+    ||"""(IF('||@pivot_col_name||'="'||x.value||'", '||@pivot_col_value||', null)) e_'||`fhoffa.x.normalize_col_name`(x.value))
    FROM UNNEST((
        SELECT APPROX_TOP_COUNT("""||pivot_col_name||", @max_columns) FROM `"||table_name||"`)) x"
   ) INTO pivotter
